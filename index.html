@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(135deg, #fff0f5, #ffd6f0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      flex-direction: column;
+      position: relative;
+    }
+    .page { display: none; }
+    .page.active { display: flex; flex-direction: column; align-items: center; }
+
+    .envelope {
+      width: 300px;
+      height: 180px;
+      background: #ffb6c1;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 20px;
+    }
+    .letter-text {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      display: none;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      background: #ff66a3;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .question, .popup, .choice-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .choice-container button {
+      margin: 5px;
+    }
+    .popup {
+      display: none;
+      background: white;
+      padding: 10px;
+      border: 2px solid #ff99cc;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page 1: Letter -->
+  <div id="page1" class="page active">
+    <div class="envelope">
+      <h3>You've Got a Letter 💌</h3>
+      <div id="letter" class="letter-text">
+        <p>Happy Birthday Cutie! 💖 You are magical and today is your day!</p>
+      </div>
+      <button onclick="openLetter()">Open</button>
+    </div>
+    <button onclick="nextPage(2)">More</button>
+  </div>
+
+  <!-- Page 2: Ice Cream Question -->
+  <div id="page2" class="page">
+    <h2>Now you have reached level 2 🎂</h2>
+    <div class="question">Do you want an ice cream?</div>
+    <button id="yesBtn" onclick="moveYes()">Yes</button>
+    <button onclick="noAnswer()">No</button>
+    <div id="noPopup" class="popup">Don't cry sweetie, I will still give it to you 💕</div>
+    <button onclick="nextPage(3)">More</button>
+  </div>
+
+  <!-- Page 3: Final Choices -->
+  <div id="page3" class="page">
+    <h2>You have reached level 3 🎉</h2>
+    <div class="question">What do you like the most?</div>
+    <div class="choice-container">
+      <button onclick="finalChoice()">Flowers</button>
+      <button onclick="finalChoice()">Pads</button>
+      <button onclick="finalChoice()">Chocolate</button>
+    </div>
+    <div id="finalPopup" class="popup">
+      🎊 Congratulations! You are now eligible to celebrate your birthday, cutieeeee! 🎊
+    </div>
+  </div>
+
+  <!-- Audio -->
+  <audio id="noSound" src="https://media.vocaroo.com/mp3/1jhQ9pVtxb4S"></audio>
+  <audio id="choiceSound" src="https://media.vocaroo.com/mp3/1ftTQnd8NMld"></audio>
+
+  <script>
+    function openLetter() {
+      document.getElementById('letter').style.display = 'block';
+    }
+
+    function nextPage(pageNum) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page' + pageNum).classList.add('active');
+    }
+
+    function moveYes() {
+      const btn = document.getElementById('yesBtn');
+      const maxX = window.innerWidth - 100;
+      const maxY = window.innerHeight - 100;
+      btn.style.position = 'absolute';
+      btn.style.left = Math.random() * maxX + 'px';
+      btn.style.top = Math.random() * maxY + 'px';
+
+      // Optional sound
+      document.getElementById('noSound').play();
+    }
+
+    function noAnswer() {
+      const popup = document.getElementById('noPopup');
+      popup.style.display = 'block';
+      document.getElementById('noSound').play();
+      setTimeout(() => popup.style.display = 'none', 3000);
+    }
+
+    function finalChoice() {
+      const popup = document.getElementById('finalPopup');
+      popup.style.display = 'block';
+      document.getElementById('choiceSound').play();
+      setTimeout(() => popup.style.display = 'none', 4000);
+    }
+  </script>
+</body>
+</html>

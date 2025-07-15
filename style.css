@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #fff8f0;
+  text-align: center;
+  padding-top: 40px;
+}
+
+#moreBtn {
+  position: fixed;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  background: #ff69b4;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 999;
+}
+
+#app > div {
+  max-width: 400px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Game area */
+#gameArea {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  background: #ffe4e1;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+/* Top popup message */
+#topMessage {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #25D366;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: top 0.5s ease-in-out;
+}
+#topMessage.show {
+  top: 20px;
+}
+
+/* Bouquet animation */
+.animated-bouquet {
+  width: 80px;
+  animation: bounceGlow 2s ease-out forwards;
+  opacity: 0;
+  transform: scale(0.2);
+  margin-top: 20px;
+}
+
+@keyframes bounceGlow {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+    filter: drop-shadow(0 0 0px #ff69b4);
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+    filter: drop-shadow(0 0 15px #ff69b4);
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 20px #ff1493);
+  }
+}
+
+/* Flower gif on last page */
+#flowersGif {
+  margin-top: 20px;
+  width: 150px;
+  animation: fadeIn 2s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
